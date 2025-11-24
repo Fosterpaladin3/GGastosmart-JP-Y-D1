@@ -9,6 +9,7 @@ import EmptyState from '../components/EmptyState'
 import { formatCurrency } from '../config/config'
 import { useAuth } from '../contexts/AuthContext'
 import { useBalance } from '../contexts/BalanceContext'
+import RecommendationsModal from "../components/RecommendationsModal.jsx";
 import './IncomeExpenses.css'
 
 const IncomeExpenses = () => {
@@ -24,6 +25,12 @@ const IncomeExpenses = () => {
   const [editingTransaction, setEditingTransaction] = useState(null)
   const [transactionType, setTransactionType] = useState('income')
   const [amountValue, setAmountValue] = useState('')
+  // estado para controlar el modal (usar el nombre que usas en el JSX)
+  const [showRecs, setShowRecs] = useState(false);
+
+  // funciones para abrir/cerrar
+  const openRecs = () => setShowRecs(true);
+  const closeRecs = () => setShowRecs(false);
 
   const { register, handleSubmit, reset, setValue, watch, formState: { errors } } = useForm()
 
@@ -297,10 +304,17 @@ const IncomeExpenses = () => {
                 </span>
               </div>
               <div className="balance-actions">
-                <button className="btn-recommendations">
+                <button
+                  id="recomendaciones-btn"
+                  className="btn-recommendations"
+                  onClick={() => setShowRecs(true)}
+                  style={{ background: "#111", color:"#fff", padding: "8px 14px", borderRadius: 6, border: "none" }}
+                >
                   Recomendaciones
                   <span className="notification-badge">2</span>
                 </button>
+
+                <RecommendationsModal open={showRecs} onClose={() => setShowRecs(false)} />
                 <button className="btn-alerts">
                   <i className="icon-warning"></i>
                   Alertas
