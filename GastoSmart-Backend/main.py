@@ -1,4 +1,5 @@
-from fastapi import FastAPI, HTTPException
+# main.py
+from fastapi import FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
@@ -6,6 +7,8 @@ import os
 from dotenv import load_dotenv
 from contextlib import asynccontextmanager
 import uvicorn
+import time
+
 # Importar conexión a MongoDB
 from database.connection import connect_to_mongo, close_mongo_connection
 
@@ -30,9 +33,6 @@ app = FastAPI(
 )
 
 # Middleware de logging para debugging
-from fastapi import Request
-import time
-
 @app.middleware("http")
 async def log_requests(request: Request, call_next):
     start_time = time.time()
@@ -69,26 +69,29 @@ if os.path.exists("../Front-end/dist"):
 @app.get("/")
 async def read_index():
     if os.path.exists("../Front-end/dist/index.html"):
-        from fastapi.responses import FileResponse
         return FileResponse("../Front-end/dist/index.html")
     else:
         return {"message": "Frontend en modo desarrollo. Accede a http://localhost:3000"}
 
-# React Router will handle all frontend routes
-
+# -------------------------
 # Importar routers
+# -------------------------
+# IMPORTANTE: cuando incluimos los routers los montamos bajo el prefijo /api
+# para que las llamadas del frontend a /api/... funcionen correctamente.
 from routers.users import router as users_router
 from routers.transactions import router as transactions_router
 from routers.goals import router as goals_router
 from routers.reports import router as reports_router
 from routers.user_settings import router as user_settings_router
+from routers.recommendations import router as recommendations_router
 
-# Incluir routers en la aplicación
-app.include_router(users_router)
-app.include_router(transactions_router)
-app.include_router(goals_router)
-app.include_router(reports_router)
-app.include_router(user_settings_router)
+# Incluir routers en la aplicación bajo /api para que el frontend use /api/...
+app.include_router(users_router, prefix="/api")
+app.include_router(transactions_router, prefix="/api")
+app.include_router(goals_router, prefix="/api")
+app.include_router(reports_router, prefix="/api")
+app.include_router(user_settings_router, prefix="/api")
+app.include_router(recommendations_router, prefix="/api")
 
 # Ruta de prueba
 @app.get("/api/test")
@@ -159,6 +162,6 @@ async def read_frontend(path: str):
         return {"message": "Accede a http://localhost:3000 para el frontend en desarrollo"}
 
 if __name__ == "__main__":
-    
-    # Usar localhost para desarrollo local
+    # Mensaje útil al arrancar para debugging
+    print("Arrancando GastoSmart API en http://127.0.0.1:8000")
     uvicorn.run(app, host="127.0.0.1", port=8000)
