@@ -1,0 +1,1203 @@
+/* ==========================================================================
+   Auth Pages Styles - Login, Signup, etc.
+   ========================================================================== */
+
+/* ===== RESET Y BASE ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+  font-weight: 400;
+  line-height: 1.6;
+  color: #0f172a;
+  background: #ffffff;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* ===== DESIGN TOKENS (PALETA DEL LOGO) ===== */
+:root {
+  /* Colores principales basados en el logo */
+  --color-primary: #D2BC6E;         /* dorado claro */
+  --color-primary-dark: #85794A;    /* dorado oscuro */
+  --color-primary-light: #F2E7BA;   /* dorado muy suave */
+
+  --color-secondary: #99C383;       /* verde suave */
+  --color-secondary-dark: #7DA96B;  /* verde más profundo */
+  --color-secondary-light: #CFE9C5; /* verde muy claro */
+
+  /* Colores neutros derivados del fondo del logo */
+  --color-white: #ffffff;
+  --color-gray-50: #f5f7fa;
+  --color-gray-100: #e9edf2;
+  --color-gray-200: #c8ced8;
+  --color-gray-300: #a5adba;
+  --color-gray-400: #7f8899;
+  --color-gray-500: #5b6274;
+  --color-gray-600: #3c4152;
+  --color-gray-700: #262a38;
+  --color-gray-800: #101423;
+  --color-gray-900: #060A25;        /* azul profundo del logo */
+
+  /* Estados */
+  --color-success: #99C383;
+  --color-error: #ef4444;
+  --color-warning: #D2BC6E;
+  --color-info: #99C383;
+
+  /* Colores de fondo */
+  --color-left-bg: #060A25;         /* fondo azul profundo */
+  --color-right-bg: #0A122E;        /* azul oscuro suave */
+
+  /* Degradados del logo (verde oscuro → amarillo suave) */
+
+  --color-left-gradient: linear-gradient(135deg, #0C8351, #19B878, #56D3A4);
+  --color-right-gradient: linear-gradient(135deg, #19B878, #56D3A4, #F5E8A1);
+
+  /* Espaciado consistente – limpio y universal */
+  --spacing-xs: 0.25rem;    /* 4px */
+  --spacing-sm: 0.5rem;     /* 8px */
+  --spacing-md: 0.75rem;    /* 12px */
+  --spacing-lg: 1rem;       /* 16px */
+  --spacing-xl: 1.25rem;    /* 20px */
+  --spacing-2xl: 1.5rem;    /* 24px */
+  --spacing-3xl: 2rem;      /* 32px */
+  --spacing-4xl: 2.5rem;    /* 40px */
+  --spacing-5xl: 3rem;      /* 48px */
+  --spacing-6xl: 3.5rem;    /* 56px */
+
+  /* Bordes redondeados pulidos para un look premium */
+  --radius-sm: 0.25rem;     /* 4px */
+  --radius-md: 0.4rem;      /* 6.4px */
+  --radius-lg: 0.65rem;     /* 10px */
+  --radius-xl: 1rem;        /* 16px */
+  --radius-2xl: 1.25rem;    /* 20px */
+  --radius-3xl: 1.75rem;    /* 28px */
+  --radius-full: 9999px;    /* Circular */
+
+  /* Sombras equilibradas para fondos oscuros y elementos dorados */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.25);         /* sutil pero definida */
+  --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.28);         /* ligera profundidad */
+  --shadow-lg: 0 10px 18px rgba(0, 0, 0, 0.30);       /* elegante y limpia */
+  --shadow-xl: 0 25px 45px rgba(0, 0, 0, 0.32);       /* perfecta para card o modal */
+
+  /* Tipografías (escala ideal para UI moderna) */
+  --font-size-xs: 0.75rem;    /* 12px */
+  --font-size-sm: 0.875rem;   /* 14px */
+  --font-size-md: 1rem;       /* 16px */
+  --font-size-lg: 1.125rem;   /* 18px */
+  --font-size-xl: 1.25rem;    /* 20px */
+  --font-size-2xl: 1.5rem;    /* 24px */
+  --font-size-3xl: 1.875rem;  /* 30px */
+  --font-size-4xl: 2rem;      /* 32px */
+  --font-size-5xl: 2.5rem;    /* 40px */
+
+
+/* ==========================================================================
+   Layout Principal
+   ========================================================================== */
+
+/* Container principal fullscreen */
+.container,
+.login-container,
+.signup-container {
+  min-height: 100vh;
+  height: 100vh;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  padding: 0;
+  background: linear-gradient(135deg, #0C8351, #19B878, #56D3A4, #F5E8A1);
+  overflow: hidden;
+}
+
+/* Wrapper del login/signup */
+.login,
+.signup {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  display: flex;
+}
+
+/* Grid principal del login/signup - Proporciones exactas del prototipo */
+.login__grid,
+.signup__grid {
+  display: grid;
+  grid-template-columns: 50% 50%;  /* Split 50/50 como el prototipo */
+  width: 100%;
+  height: 100vh;
+  background: transparent;  /* Evita placa blanca detrás */
+  border-radius: 0;
+  box-shadow: none;
+  overflow: hidden;
+}
+
+/* ==========================================================================
+   Panel Izquierdo - Branding y Features
+   ========================================================================== */
+
+.login__left,
+.signup__left {
+  background: var(--color-left-gradient);  /* Verde con degradado */
+  padding: var(--spacing-5xl);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: var(--color-gray-800);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Decorative elements */
+.login__left::before,
+.signup__left::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+  animation: float 20s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes float {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  33% { transform: translate(30px, -30px) rotate(120deg); }
+  66% { transform: translate(-20px, 20px) rotate(240deg); }
+}
+
+/* Brand section */
+.brand {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: var(--spacing-4xl);
+  z-index: 1;
+  position: relative;
+}
+
+.brand__logo {
+  width: 100px;
+  height: 100px;
+  background: var(--color-white);  /* Fondo blanco */
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto var(--spacing-xl) auto;
+  box-shadow: var(--shadow-lg);
+  transition: transform 0.3s ease;
+  border: 3px solid var(--color-white);  /* Borde blanco */
+  overflow: hidden;
+}
+
+.brand__logo:hover {
+  transform: scale(1.05);
+}
+
+.brand__logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: var(--radius-full);
+}
+
+.brand__logo svg {
+  width: 40px;
+  height: 40px;
+  color: var(--color-primary);  /* Ícono verde por dentro */
+}
+
+.brand__title {
+  font-size: var(--font-size-5xl);
+  font-weight: 800;
+  color: var(--color-gray-900);
+  margin-bottom: var(--spacing-xl);
+  letter-spacing: -0.02em;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.brand__subtitle {
+  font-size: var(--font-size-lg);
+  font-weight: 400;
+  color: var(--color-gray-600);
+  line-height: 1.7;
+  max-width: 420px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* Features list */
+.features {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2xl);
+  margin-top: var(--spacing-4xl);
+  z-index: 1;
+  position: relative;
+}
+
+.feature {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-lg);
+  text-align: left;
+  transition: transform 0.2s ease;
+}
+
+.feature:hover {
+  transform: translateX(4px);
+}
+
+.feature__icon {
+  width: 48px;
+  height: 48px;
+  min-width: 48px;
+  min-height: 48px;
+  background: var(--color-white);
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  border: 2px solid var(--color-primary-light);
+  transition: all 0.3s ease;
+}
+
+.feature__icon svg {
+  width: 22px;
+  height: 22px;
+  color: var(--color-primary);
+  flex-shrink: 0;
+  display: block;
+}
+
+.feature:hover .feature__icon {
+  transform: scale(1.05);
+  box-shadow: var(--shadow-lg);
+}
+
+.feature__content {
+  flex: 1;
+  padding-top: var(--spacing-sm);
+}
+
+.feature__title {
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  color: var(--color-gray-900);
+  margin-bottom: var(--spacing-sm);
+  letter-spacing: -0.01em;
+}
+
+.feature__desc {
+  font-size: var(--font-size-sm);
+  font-weight: 400;
+  color: var(--color-gray-600);
+  line-height: 1.6;
+  max-width: 280px;
+}
+
+/* ==========================================================================
+   Panel Derecho - Formulario
+   ========================================================================== */
+
+.login__right,
+.signup__right {
+  padding: var(--spacing-3xl);  /* Menos padding para más espacio */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: var(--color-right-gradient);  /* Beige/naranja con degradado */
+  position: relative;
+  overflow-y: auto;  /* Permitir scroll interno si es necesario */
+  max-height: 100vh;  /* No exceder la altura de la ventana */
+}
+
+.formwrap {
+  width: 100%;
+  max-width: 520px;  /* Un poco más ancho para evitar que se corten los placeholders */
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  min-height: auto;  /* Asegurar que se ajuste al contenido */
+  padding: 0 var(--spacing-sm);  /* Padding lateral para evitar que el texto toque los bordes */
+}
+
+/* Header del formulario */
+.formwrap__header {
+  margin-bottom: var(--spacing-3xl);
+  padding-top: var(--spacing-lg);
+}
+
+/* Ajustes específicos para Signup: balance visual y menor separación con el formulario */
+.signup__right .formwrap__header {
+  margin-top: var(--spacing-3xl);
+  margin-bottom: var(--spacing-sm); /* acercar campos al header */
+}
+.signup__right .formwrap__subtitle {
+  margin-bottom: var(--spacing-sm);
+}
+
+.formwrap__title {
+  font-size: var(--font-size-3xl);
+  font-weight: 800;
+  color: var(--color-gray-900);
+  text-align: center;
+  margin-bottom: var(--spacing-md);
+  letter-spacing: -0.02em;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  line-height: 1.2;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.formwrap__subtitle {
+  font-size: var(--font-size-md);
+  font-weight: 400;
+  color: var(--color-gray-600);
+  text-align: center;
+  margin-bottom: var(--spacing-2xl);
+  line-height: 1.6;
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+
+/* ==========================================================================
+   Formulario y Campos
+   ========================================================================== */
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);  /* Espacios más compactos para que quepa todo */
+}
+
+.form__row {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+/* Grid para campos en fila (nombre y apellido) */
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-md);  /* Menos gap para dar más espacio a los campos */
+  margin-bottom: 0;  /* eliminar extra: el ritmo lo controla .form (gap) */
+}
+
+.form-row .form__row {
+  margin: 0;
+}
+
+/* Labels */
+.label {
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-gray-800);
+  margin-bottom: var(--spacing-sm);
+  display: block;
+  letter-spacing: -0.01em;
+}
+
+/* Campos de entrada */
+.field {
+  position: relative;
+  display: block;
+}
+
+.field__icon {
+  position: absolute;
+  left: 12px; /* más separación del texto */
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--color-gray-400);
+  pointer-events: none;
+  z-index: 1; /* no interfiere con caret/texto */
+  width: 20px;
+  height: 20px;
+  transition: color 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.field__icon svg {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  display: block;
+}
+
+.field input {
+  width: 100%;
+  padding: var(--spacing-xl) var(--spacing-4xl) var(--spacing-xl) 58px; /* base desktop: >= 48px a la izquierda */
+  border: 2px solid var(--color-gray-200);
+  border-radius: var(--radius-lg);
+  font-size: var(--font-size-md);
+  font-weight: 400;
+  font-family: inherit;
+  color: var(--color-gray-900);
+  background: var(--color-white);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  outline: none;
+  min-height: 56px;
+  box-sizing: border-box;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.field input:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.1), 0 4px 12px rgba(0, 0, 0, 0.08);
+  transform: translateY(-1px);
+}
+
+.field:focus-within .field__icon {
+  color: var(--color-primary);
+}
+
+.field input::placeholder {
+  color: var(--color-gray-400);
+  font-size: var(--font-size-md);
+}
+
+.field input:disabled {
+  background: var(--color-gray-50);
+  color: var(--color-gray-500);
+  cursor: not-allowed;
+}
+
+/* Select styles */
+.field__select {
+  width: 100%;
+  padding: var(--spacing-xl) var(--spacing-4xl) var(--spacing-xl) var(--spacing-5xl);
+  border: 2px solid var(--color-gray-200);
+  border-radius: var(--radius-lg);
+  font-size: var(--font-size-md);
+  font-weight: 400;
+  font-family: inherit;
+  color: var(--color-gray-900);
+  background: var(--color-white);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  outline: none;
+  min-height: 56px;
+  box-sizing: border-box;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+}
+
+.field__select:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.1), 0 4px 12px rgba(0, 0, 0, 0.08);
+  transform: translateY(-1px);
+}
+
+.field__select:disabled {
+  background: var(--color-gray-50);
+  color: var(--color-gray-500);
+  cursor: not-allowed;
+}
+
+/* ==========================================================================
+   Campos de Contraseña con Toggle
+   ========================================================================== */
+
+.field--password {
+  position: relative;
+}
+
+.field--password input {
+  padding-right: 64px;  /* Mantener espacio para el ícono del ojo */
+}
+
+.password-toggle {
+  position: absolute;
+  right: 16px; /* asegurar margen y evitar solapamiento */
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--color-gray-500);
+  padding: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2; /* por encima del input pero sin tapar caret */
+  transition: all 0.2s ease;
+  border-radius: var(--radius-md);
+  width: 32px;
+  height: 32px;
+  min-width: 32px;
+  min-height: 32px;
+}
+
+.password-toggle:hover {
+  color: var(--color-gray-700);
+  background: var(--color-gray-100);
+}
+
+.password-toggle:focus {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.password-toggle svg {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  display: block;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.password-toggle .eye-icon,
+.password-toggle .eye-off-icon {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* ==========================================================================
+   Términos y Condiciones
+   ========================================================================== */
+
+.form__terms {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-md);
+  margin: var(--spacing-md) 0 var(--spacing-lg) 0;  /* Menos espacio */
+  padding: var(--spacing-sm);  /* Menos padding */
+  background: var(--color-gray-50);
+  border-radius: var(--radius-md);
+  transition: background-color 0.2s ease;
+}
+
+.form__terms:hover {
+  background: var(--color-gray-100);
+}
+
+.form__terms input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  margin: 0;
+  cursor: pointer;
+  flex-shrink: 0;
+  margin-top: 2px;
+  accent-color: var(--color-secondary);
+  transition: transform 0.2s ease;
+}
+
+.form__terms input[type="checkbox"]:hover {
+  transform: scale(1.1);
+}
+
+.form__terms label {
+  font-size: var(--font-size-sm);
+  color: var(--color-gray-600);
+  line-height: 1.5;
+  cursor: pointer;
+  margin: 0;
+}
+
+.form__terms a,
+.link {
+  color: var(--color-secondary);
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.form__terms a:hover,
+.link:hover {
+  text-decoration: underline;
+  color: var(--color-secondary-dark);
+}
+
+/* ==========================================================================
+   Botón Principal
+   ========================================================================== */
+
+.btn {
+  width: 100%;
+  padding: var(--spacing-xl) var(--spacing-3xl);
+  background: linear-gradient(135deg, var(--color-secondary) 0%, var(--color-secondary-dark) 100%);
+  color: var(--color-white);
+  border: none;
+  border-radius: var(--radius-lg);
+  font-size: var(--font-size-md);
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 12px rgba(234, 88, 12, 0.3);
+  letter-spacing: -0.01em;
+  margin-bottom: var(--spacing-md);  /* Menos espacio antes del footer */
+  position: relative;
+  overflow: hidden;
+  min-height: 56px;  /* Altura mínima para botón más grande */
+}
+
+.btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.btn:hover::before {
+  left: 100%;
+}
+
+.btn:hover {
+  background: linear-gradient(135deg, var(--color-secondary-dark) 0%, #b45309 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(234, 88, 12, 0.4);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+.btn:disabled {
+  background: var(--color-gray-300);
+  color: var(--color-gray-500);
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.btn:disabled::before {
+  display: none;
+}
+
+/* Loading state */
+.btn.loading {
+  color: transparent;
+}
+
+.btn.loading::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  margin: -10px 0 0 -10px;
+  border: 2px solid transparent;
+  border-top: 2px solid var(--color-white);
+  border-radius: var(--radius-full);
+  animation: spin 1s linear infinite;
+}
+
+/* Loading spinner component */
+.loading-spinner {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: var(--color-white);
+  border-radius: var(--radius-full);
+  animation: spin 0.8s linear infinite;
+  margin-right: var(--spacing-sm);
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* ==========================================================================
+   Header del Formulario
+   ========================================================================== */
+
+.formwrap__header {
+  text-align: center;
+  margin-bottom: var(--spacing-2xl);
+}
+
+/* ==========================================================================
+   Footer del Formulario
+   ========================================================================== */
+
+.formwrap__footer {
+  text-align: center;
+  margin-top: var(--spacing-lg);
+  padding: var(--spacing-lg) 0;
+  border-top: 1px solid var(--color-gray-200);
+  display: block !important;
+  width: 100%;
+  background: transparent;
+}
+
+.footer__text {
+  font-size: var(--font-size-sm);
+  color: var(--color-gray-700);
+  margin: 0;
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+.footer__link {
+  color: var(--color-secondary);
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.footer__link:hover {
+  color: var(--color-secondary-dark);
+  text-decoration: underline;
+  transform: translateY(-1px);
+}
+
+.footer__link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--color-secondary);
+  transition: width 0.3s ease;
+}
+
+.footer__link:hover::after {
+  width: 100%;
+}
+
+/* ==========================================================================
+   Estados de Error y Éxito
+   ========================================================================== */
+
+.form__errors {
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #dc2626;
+  padding: var(--spacing-md);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-sm);
+  margin: var(--spacing-md) 0;
+  display: none;
+}
+
+.form__errors.show {
+  display: block;
+  animation: slideDown 0.3s ease-out;
+}
+
+.error-message {
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #dc2626;
+  padding: var(--spacing-md);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-sm);
+  margin-top: var(--spacing-sm);
+  display: none;
+}
+
+.error-message.show {
+  display: block;
+  animation: slideDown 0.3s ease-out;
+}
+
+.field-error {
+  color: var(--color-error);
+  font-size: var(--font-size-xs);
+  margin-top: var(--spacing-xs);
+  display: block;
+  animation: slideDown 0.3s ease-out;
+}
+
+.required-asterisk {
+  color: var(--color-error);
+  font-weight: 600;
+}
+
+.field input.error {
+  border-color: var(--color-error);
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+}
+
+.field input.error:focus {
+  border-color: var(--color-error);
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.2);
+}
+
+.success-message {
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  color: #15803d;
+  padding: var(--spacing-md);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-sm);
+  margin-top: var(--spacing-sm);
+  display: none;
+}
+
+.success-message.show {
+  display: block;
+  animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ==========================================================================
+   Responsive Design
+   ========================================================================== */
+
+@media (max-width: 1024px) {
+  .login__left,
+  .signup__left {
+    padding: var(--spacing-4xl);
+  }
+  
+  .login__right,
+  .signup__right {
+    padding: var(--spacing-4xl);
+  }
+  
+  /* inputs: mantener separación suficiente para icono a la izquierda */
+  .field input {
+    padding: var(--spacing-lg) var(--spacing-3xl) var(--spacing-lg) 50px;
+  }
+}
+
+/* Tablets */
+@media (max-width: 1024px) {
+  .feature__icon {
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+    min-height: 44px;
+  }
+  
+  .feature__icon svg {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .feature__title {
+    font-size: var(--font-size-md);
+  }
+  
+  .feature__text {
+    font-size: var(--font-size-sm);
+  }
+  
+  .field input {
+    padding: var(--spacing-lg) var(--spacing-3xl) var(--spacing-lg) 50px;
+  }
+  
+  .field__icon {
+    left: 16px;
+    width: 19px;
+    height: 19px;
+  }
+  
+  .field__icon svg {
+    width: 17px;
+    height: 17px;
+  }
+}
+
+@media (max-width: 768px) {
+  .login__grid,
+  .signup__grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .login__left,
+  .signup__left {
+    display: none;
+  }
+  
+  .login__right,
+  .signup__right {
+    padding: var(--spacing-3xl);
+    background: var(--color-white);  /* Fondo blanco en mobile */
+  }
+  
+  .formwrap__title {
+    font-size: var(--font-size-3xl);
+    line-height: 1.1;
+  }
+  
+  .formwrap__subtitle {
+    font-size: var(--font-size-md);
+    line-height: 1.5;
+    max-width: 100%;
+    padding: 0 var(--spacing-sm);
+  }
+  
+  .formwrap {
+    max-width: 400px;  /* Más pequeño en mobile */
+  }
+}
+
+@media (max-width: 640px) {
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+  
+  .login__right,
+  .signup__right {
+    padding: var(--spacing-2xl);
+  }
+  
+  .formwrap__title {
+    font-size: var(--font-size-2xl);
+    line-height: 1.1;
+  }
+  
+  .formwrap__subtitle {
+    font-size: var(--font-size-sm);
+    line-height: 1.4;
+    padding: 0 var(--spacing-xs);
+  }
+  
+  .brand__title {
+    font-size: var(--font-size-4xl);
+  }
+}
+
+@media (max-width: 480px) {
+  .login__right,
+  .signup__right {
+    padding: var(--spacing-xl);
+  }
+  
+  .formwrap__title {
+    font-size: var(--font-size-xl);
+    line-height: 1.1;
+  }
+  
+  .formwrap__subtitle {
+    font-size: var(--font-size-xs);
+    line-height: 1.3;
+    padding: 0;
+  }
+  
+  .field input {
+    padding: var(--spacing-md) 44px var(--spacing-md) 48px;
+  }
+  
+  .field__icon {
+    left: 15px;
+    width: 18px;
+    height: 18px;
+  }
+  
+  .field__icon svg {
+    width: 16px;
+    height: 16px;
+  }
+  
+  .password-toggle {
+    right: 12px;
+    width: 28px;
+    height: 28px;
+    min-width: 28px;
+    min-height: 28px;
+  }
+  
+  .password-toggle svg {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+/* ==========================================================================
+   Animaciones y Transiciones
+   ========================================================================== */
+
+.login__grid,
+.signup__grid {
+  animation: fadeIn 0.5s ease-out;
+}
+
+.login__left > *,
+.signup__left > * {
+  animation: slideInLeft 0.8s ease-out;
+  animation-fill-mode: both;
+}
+
+.login__right > *,
+.signup__right > * {
+  animation: slideInRight 0.8s ease-out;
+  animation-fill-mode: both;
+}
+
+.brand {
+  animation-delay: 0.1s;
+}
+
+.features {
+  animation-delay: 0.2s;
+}
+
+.formwrap__title {
+  animation-delay: 0.1s;
+}
+
+.formwrap__subtitle {
+  animation-delay: 0.2s;
+}
+
+.form {
+  animation-delay: 0.3s;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* ==========================================================================
+   Estados de Focus para Accesibilidad
+   ========================================================================== */
+
+.field input:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--color-secondary);
+  outline-offset: 2px;
+}
+
+.form__terms input[type="checkbox"]:focus-visible {
+  outline: 2px solid var(--color-secondary);
+  outline-offset: 2px;
+}
+
+/* ==========================================================================
+   Print Styles
+   ========================================================================== */
+
+@media print {
+  .login__left,
+  .signup__left {
+    display: none;
+  }
+  
+  .login__grid,
+  .signup__grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .login__right,
+  .signup__right {
+    padding: 0;
+    background: white;
+  }
+  
+  .btn {
+    background: #333 !important;
+    color: white !important;
+  }
+}
+
+/* =========================================================
+   FIX FINAL — evitar solapes de íconos y normalizar espacios
+   (pegar al FINAL del archivo)
+   ========================================================= */
+
+/* 1) Íconos a la izquierda: nunca deben cubrir el texto */
+.form .form__row .field { position: relative; }
+.form .form__row .field__icon {
+  left: 16px !important;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1 !important;     /* por debajo del caret del input */
+  pointer-events: none !important;
+  width: 20px; height: 20px;
+}
+/* Asegura padding suficiente a la izquierda en todos los breakpoints */
+.form .form__row .field > input {
+  padding-left: 60px !important; /* 16 (left) + 20 (icono) + 24 de respiro */
+}
+
+/* 2) Ícono "ojo" (derecha) no debe tapar texto */
+.form .form__row .field.field--password > input {
+  padding-right: 68px !important;
+}
+.form .form__row .field .password-toggle {
+  right: 16px !important;
+  z-index: 2 !important;   /* sobre el input, pero sin bloquear el caret */
+}
+
+/* 3) Ritmo vertical: quitar extra entre "Nombre/Apellido" y "Correo" */
+.form > .form-row {
+  margin-bottom: 0 !important;     /* que mande el gap del contenedor */
+}
+.form {
+  gap: var(--spacing-lg) !important;  /* fuente única del espaciado vertical */
+}
+/* Evitar márgenes internos que sumen espacio extra */
+.form-row .form__row { margin: 0 !important; }
+}
