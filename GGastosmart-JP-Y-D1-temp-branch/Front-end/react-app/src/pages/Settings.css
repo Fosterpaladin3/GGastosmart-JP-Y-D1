@@ -219,7 +219,7 @@
   border-radius: 8px;
   font-size: 14px;
   color: #374151;
-  background-color: white;
+  background-color: white !important;
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
