@@ -72,9 +72,7 @@ const PasswordReset = () => {
           <aside className="login__left">
             <div className="brand">
               <div className="brand__logo" aria-hidden="true">
-                <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor">
-                  <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
-                </svg>
+                <img src="/assets/logo.png" alt="GastoSmart Logo" />
               </div>
               <h1 className="brand__title">Recuperar Contraseña</h1>
               <p className="brand__subtitle">

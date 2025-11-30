@@ -25,44 +25,46 @@ body {
   text-rendering: optimizeLegibility;
 }
 
-/* ===== DESIGN TOKENS ===== */
+/* ===== DESIGN TOKENS (PALETA DEL LOGO) ===== */
 :root {
-  /* Colores principales refinados */
-  --color-primary: #059669;
-  --color-primary-dark: #047857;
-  --color-primary-light: #d1fae5;
-  --color-secondary: #ea580c;
-  --color-secondary-dark: #c2410c;
-  --color-secondary-light: #fed7aa;
-  
-  /* Colores neutros */
-  --color-white: #ffffff;
-  --color-gray-50: #f9fafb;
-  --color-gray-100: #f3f4f6;
-  --color-gray-200: #e5e7eb;
-  --color-gray-300: #d1d5db;
-  --color-gray-400: #9ca3af;
-  --color-gray-500: #6b7280;
-  --color-gray-600: #4b5563;
-  --color-gray-700: #374151;
-  --color-gray-800: #1f2937;
-  --color-gray-900: #111827;
-  
-  /* Colores especiales */
-  --color-success: #10b981;
-  --color-error: #ef4444;
-  --color-warning: #f59e0b;
-  --color-info: #3b82f6;
-  
-  /* Colores exactos del prototipo mejorados */
-  --color-left-bg: #d1fae5;      /* verde más suave y moderno */
-  --color-right-bg: #fed7aa;     /* beige más cálido y elegante */
+  /* Colores principales basados en el logo */
+  --color-primary: #D2BC6E;         /* dorado claro */
+  --color-primary-dark: #85794A;    /* dorado oscuro */
+  --color-primary-light: #F2E7BA;   /* dorado muy suave */
 
-  /* Degradados mejorados con más profundidad */
-  --color-left-gradient: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 50%, #a7f3d0 100%);
-  --color-right-gradient: linear-gradient(135deg, #fff7ed 0%, #fed7aa 50%, #fdba74 100%);
-  
-  /* Espaciado consistente */
+  --color-secondary: #99C383;       /* verde suave */
+  --color-secondary-dark: #7DA96B;  /* verde más profundo */
+  --color-secondary-light: #CFE9C5; /* verde muy claro */
+
+  /* Colores neutros derivados del fondo del logo */
+  --color-white: #ffffff;
+  --color-gray-50: #f5f7fa;
+  --color-gray-100: #e9edf2;
+  --color-gray-200: #c8ced8;
+  --color-gray-300: #a5adba;
+  --color-gray-400: #7f8899;
+  --color-gray-500: #5b6274;
+  --color-gray-600: #3c4152;
+  --color-gray-700: #262a38;
+  --color-gray-800: #101423;
+  --color-gray-900: #060A25;        /* azul profundo del logo */
+
+  /* Estados */
+  --color-success: #99C383;
+  --color-error: #ef4444;
+  --color-warning: #D2BC6E;
+  --color-info: #99C383;
+
+  /* Colores de fondo */
+  --color-left-bg: #060A25;         /* fondo azul profundo */
+  --color-right-bg: #0A122E;        /* azul oscuro suave */
+
+  /* Degradados del logo (verde oscuro → amarillo suave) */
+
+  --color-left-gradient: linear-gradient(135deg, #0C8351, #19B878, #56D3A4);
+  --color-right-gradient: linear-gradient(135deg, #19B878, #56D3A4, #F5E8A1);
+
+  /* Espaciado consistente – limpio y universal */
   --spacing-xs: 0.25rem;    /* 4px */
   --spacing-sm: 0.5rem;     /* 8px */
   --spacing-md: 0.75rem;    /* 12px */
@@ -73,33 +75,33 @@ body {
   --spacing-4xl: 2.5rem;    /* 40px */
   --spacing-5xl: 3rem;      /* 48px */
   --spacing-6xl: 3.5rem;    /* 56px */
-  
-  /* Border radius */
+
+  /* Bordes redondeados pulidos para un look premium */
   --radius-sm: 0.25rem;     /* 4px */
-  --radius-md: 0.375rem;    /* 6px */
-  --radius-lg: 0.5rem;      /* 8px */
-  --radius-xl: 0.75rem;     /* 12px */
-  --radius-2xl: 1rem;       /* 16px */
-  --radius-3xl: 1.5rem;     /* 24px */
+  --radius-md: 0.4rem;      /* 6.4px */
+  --radius-lg: 0.65rem;     /* 10px */
+  --radius-xl: 1rem;        /* 16px */
+  --radius-2xl: 1.25rem;    /* 20px */
+  --radius-3xl: 1.75rem;    /* 28px */
   --radius-full: 9999px;    /* Circular */
-  
-  /* Shadows */
-  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-  
-  /* Typography */
-  --font-size-xs: 0.75rem;   /* 12px */
-  --font-size-sm: 0.875rem;  /* 14px */
-  --font-size-md: 1rem;      /* 16px */
-  --font-size-lg: 1.125rem;  /* 18px */
-  --font-size-xl: 1.25rem;   /* 20px */
-  --font-size-2xl: 1.5rem;   /* 24px */
-  --font-size-3xl: 1.875rem; /* 30px */
-  --font-size-4xl: 2rem;     /* 32px */
-  --font-size-5xl: 2.5rem;   /* 40px */
-}
+
+  /* Sombras equilibradas para fondos oscuros y elementos dorados */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.25);         /* sutil pero definida */
+  --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.28);         /* ligera profundidad */
+  --shadow-lg: 0 10px 18px rgba(0, 0, 0, 0.30);       /* elegante y limpia */
+  --shadow-xl: 0 25px 45px rgba(0, 0, 0, 0.32);       /* perfecta para card o modal */
+
+  /* Tipografías (escala ideal para UI moderna) */
+  --font-size-xs: 0.75rem;    /* 12px */
+  --font-size-sm: 0.875rem;   /* 14px */
+  --font-size-md: 1rem;       /* 16px */
+  --font-size-lg: 1.125rem;   /* 18px */
+  --font-size-xl: 1.25rem;    /* 20px */
+  --font-size-2xl: 1.5rem;    /* 24px */
+  --font-size-3xl: 1.875rem;  /* 30px */
+  --font-size-4xl: 2rem;      /* 32px */
+  --font-size-5xl: 2.5rem;    /* 40px */
+
 
 /* ==========================================================================
    Layout Principal
@@ -115,7 +117,7 @@ body {
   align-items: stretch;
   justify-content: center;
   padding: 0;
-  background: transparent;  /* Sin gris de fondo */
+  background: linear-gradient(135deg, #0C8351, #19B878, #56D3A4, #F5E8A1);
   overflow: hidden;
 }
 
@@ -190,8 +192,8 @@ body {
 }
 
 .brand__logo {
-  width: 80px;
-  height: 80px;
+  width: 100px;
+  height: 100px;
   background: var(--color-white);  /* Fondo blanco */
   border-radius: var(--radius-full);
   display: flex;
@@ -201,10 +203,18 @@ body {
   box-shadow: var(--shadow-lg);
   transition: transform 0.3s ease;
   border: 3px solid var(--color-white);  /* Borde blanco */
+  overflow: hidden;
 }
 
 .brand__logo:hover {
   transform: scale(1.05);
+}
+
+.brand__logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: var(--radius-full);
 }
 
 .brand__logo svg {
@@ -1190,3 +1200,4 @@ body {
 }
 /* Evitar márgenes internos que sumen espacio extra */
 .form-row .form__row { margin: 0 !important; }
+}

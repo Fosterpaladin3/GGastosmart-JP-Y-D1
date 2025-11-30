@@ -37,7 +37,7 @@ body {
   --color-success: #16a34a;
   --color-warning: #f59e0b;
   --color-error: #ef4444;
-  --color-gray-50: #f9fafb;
+  --color-gray-50: #e0e7ff;
   --color-gray-100: #f3f4f6;
   --color-gray-200: #e5e7eb;
   --color-gray-300: #d1d5db;
@@ -151,7 +151,7 @@ body {
   align-items: center;
   gap: var(--spacing-md);
   padding: var(--spacing-md) var(--spacing-md);
-  color: var(--color-gray-500);
+  color: #1e293b;
   text-decoration: none;
   font-weight: 500;
   font-size: 0.875rem;

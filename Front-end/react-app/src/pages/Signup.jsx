@@ -445,9 +445,7 @@ const SignupComponent = () => {
           <aside className="signup__left">
             <div className="brand">
               <div className="brand__logo" aria-hidden="true">
-                <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor">
-                  <path d="M21 7h-1V6a2 2 0 0 0-2-2H5a3 3 0 0 0-3 3v9a3 3 0 0 0 3 3h14a2 2 0 0 0 2-2v-1h1a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2Zm-4-1a1 1 0 0 1 1 1v1H5a2 2 0 0 1-2-2v-.171A1.83 1.83 0 0 1 4.829 4Zm5 8h-3V9h3Zm-5.5-2.5a1 1 0 1 1-1-1 1 1 0 0 1 1 1Z"/>
-                </svg>
+                <img src="/assets/logo.png" alt="GastoSmart Logo" />
               </div>
               <h1 className="brand__title">GastoSmart</h1>
               <p className="brand__subtitle">

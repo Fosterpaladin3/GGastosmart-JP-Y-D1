@@ -26,24 +26,28 @@ body {
 
 /* ===== VARIABLES CSS (TOKENS) ===== */
 :root {
-  /* Colores */
-  --color-primary: #10b981;
-  --color-primary-dark: #059669;
-  --color-secondary: #3b82f6;
-  --color-secondary-dark: #1d4ed8;
-  --color-success: #16a34a;
-  --color-warning: #f59e0b;
-  --color-error: #ef4444;
-  --color-gray-50: #f9fafb;
-  --color-gray-100: #f3f4f6;
-  --color-gray-200: #e5e7eb;
-  --color-gray-300: #d1d5db;
-  --color-gray-400: #9ca3af;
-  --color-gray-500: #6b7280;
-  --color-gray-600: #4b5563;
-  --color-gray-700: #374151;
-  --color-gray-800: #1f2937;
-  --color-gray-900: #111827;
+  /* Colores del logo */
+  --color-primary: #00A86B;        /* verde principal */
+  --color-primary-dark: #007A52;   /* verde profundo */
+  --color-secondary: #47D7AC;      /* verde claro / acento */
+  --color-secondary-dark: #009B72; /* verde acento oscuro */
+
+  /* Estados ajustados a la paleta */
+  --color-success: #00A86B;        /* éxito con verde principal */
+  --color-warning: #D2BC6E;        /* dorado suave como contraste */
+  --color-error: #E06363;          /* rojo pastel, evita choque con verdes */
+
+  /* Neutros compatibles con modo claro/oscuro */
+  --color-gray-50: #f1f5f9;
+  --color-gray-100: #e2e8f0;
+  --color-gray-200: #cbd5e1;
+  --color-gray-300: #94a3b8;
+  --color-gray-400: #64748b;
+  --color-gray-500: #475569;
+  --color-gray-600: #334155;
+  --color-gray-700: #1e293b;
+  --color-gray-800: #0f172a;
+  --color-gray-900: #060A25;       /* azul profundo del logo */
   --color-white: #ffffff;
 
   /* Espaciado */
@@ -61,12 +65,13 @@ body {
   --radius-xl: 16px;
   --radius-full: 9999px;
 
-  /* Sombras */
-  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
-  --shadow-lg: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  --shadow-xl: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  /* Sombras refinadas según tu tema */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.18);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.20);
+  --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.22);
+  --shadow-xl: 0 18px 28px rgba(0, 0, 0, 0.25);
 }
+
 
 /* ===== LAYOUT PRINCIPAL ===== */
 .container {

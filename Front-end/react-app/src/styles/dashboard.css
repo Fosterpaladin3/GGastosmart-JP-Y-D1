@@ -27,26 +27,32 @@ body {
   overflow-x: hidden;
 }
 
-/* ===== VARIABLES CSS (TOKENS) ===== */
+/* ===== VARIABLES CSS (TOKENS) — PALETA DEL LOGO ===== */
 :root {
-  /* Colores */
-  --color-primary: #10b981;
-  --color-primary-dark: #059669;
-  --color-secondary: #3b82f6;
-  --color-secondary-dark: #1d4ed8;
-  --color-success: #16a34a;
-  --color-warning: #f59e0b;
-  --color-error: #ef4444;
-  --color-gray-50: #f9fafb;
-  --color-gray-100: #f3f4f6;
-  --color-gray-200: #e5e7eb;
-  --color-gray-300: #d1d5db;
-  --color-gray-400: #9ca3af;
-  --color-gray-500: #6b7280;
-  --color-gray-600: #4b5563;
-  --color-gray-700: #374151;
-  --color-gray-800: #1f2937;
-  --color-gray-900: #111827;
+  /* Colores principales del logo */
+  --color-primary: #D2BC6E;         /* dorado claro */
+  --color-primary-dark: #85794A;    /* dorado oscuro */
+
+  --color-secondary: #99C383;       /* verde suave */
+  --color-secondary-dark: #7DA96B;  /* verde más profundo */
+
+  /* Estados coherentes con la paleta */
+  --color-success: #99C383;         /* verde del logo */
+  --color-warning: #D2BC6E;         /* dorado */
+  --color-error: #E06363;           /* rojo suave para no chocar con dorado */
+
+  /* Neutros derivados del fondo del logo */
+  --color-gray-50: #f4f6f8;
+  --color-gray-100: #e6e9ef;
+  --color-gray-200: #c6cbd4;
+  --color-gray-300: #a3abb8;
+  --color-gray-400: #7c8698;
+  --color-gray-500: #596073;
+  --color-gray-600: #3a4052;
+  --color-gray-700: #242837;
+  --color-gray-800: #131726;
+  --color-gray-900: #060A25;       /* azul profundo del logo */
+
   --color-white: #ffffff;
 
   /* Espaciado */
@@ -64,11 +70,12 @@ body {
   --radius-xl: 16px;
   --radius-full: 9999px;
 
-  /* Sombras */
-  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
-  --shadow-lg: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  /* Sombras — equilibradas para fondo oscuro */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.25);
+  --shadow-md: 0 3px 6px rgba(0, 0, 0, 0.28);
+  --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.30);
 }
+
 
 /* ===== LAYOUT PRINCIPAL ===== */
 .dashboard-layout {
@@ -104,8 +111,8 @@ body {
 }
 
 .brand__logo {
-  width: 32px;
-  height: 32px;
+  width: 40px;
+  height: 40px;
   background: var(--color-primary);
   border-radius: var(--radius-md);
   display: flex;
@@ -115,6 +122,13 @@ body {
   flex-shrink: 0;
   font-weight: 700;
   font-size: 1.125rem;
+  overflow: hidden;
+}
+
+.brand__logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .brand__title {
