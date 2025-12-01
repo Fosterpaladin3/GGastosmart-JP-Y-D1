@@ -113,7 +113,7 @@ async def login_user(
             print(f"[DEBUG] Login failed for email: {login_data.email}")
             raise HTTPException(
                 status_code=status.HTTP_401_UNAUTHORIZED,
-                detail="Credenciales inválidas"
+                detail="Correo o contraseña inválidos"
             )
         
         # Importar función de creación de token
