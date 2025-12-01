@@ -10,6 +10,7 @@ import { formatCurrency } from '../config/config'
 import { useAuth } from '../contexts/AuthContext'
 import { useBalance } from '../contexts/BalanceContext'
 import RecommendationsModal from "../components/RecommendationsModal.jsx";
+import Alertas from "../components/Alertas"; // <-- IMPORTADO
 import './IncomeExpenses.css'
 
 const IncomeExpenses = () => {
@@ -61,6 +62,19 @@ const IncomeExpenses = () => {
   useEffect(() => {
     loadData()
   }, [])
+
+  // FUNCION AUXILIAR: obtener rango del mes actual en ISO para pasar al componente Alertas
+  const getCurrentMonthRangeISO = () => {
+    const currentDate = new Date()
+    const year = currentDate.getFullYear()
+    const month = currentDate.getMonth() + 1
+    const dateFrom = new Date(year, month - 1, 1) // Primer día del mes
+    const dateTo = new Date(year, month, 0, 23, 59, 59, 999) // Último día del mes (hasta final del día)
+    return {
+      dateFrom: dateFrom.toISOString(),
+      dateTo: dateTo.toISOString()
+    }
+  }
 
   // Función para formatear números con separador de miles (formato colombiano)
   const formatNumberWithThousands = (value) => {
@@ -275,6 +289,9 @@ const IncomeExpenses = () => {
     )
   }
 
+  // Obtener rango del mes actual para pasar como props a Alertas
+  const { dateFrom, dateTo } = getCurrentMonthRangeISO()
+
   return (
     <DashboardLayout hideBudget={true}>
       <div className="income-expenses-container">
@@ -315,11 +332,13 @@ const IncomeExpenses = () => {
                 </button>
 
                 <RecommendationsModal open={showRecs} onClose={() => setShowRecs(false)} />
-                <button className="btn-alerts">
-                  <i className="icon-warning"></i>
-                  Alertas
-                  <span className="notification-badge">1</span>
-                </button>
+
+                {/* REEMPLAZADO: botón Alertas nativo --> componente Alertas */}
+                <Alertas
+                  dateFrom={dateFrom}
+                  dateTo={dateTo}
+                  endpoint="/api/transactions/stats/summary"
+                />
               </div>
             </div>
           </div>
@@ -436,7 +455,7 @@ const IncomeExpenses = () => {
                           <button onClick={() => handleDelete(transaction.id)}>🗑️</button>
                         </div>
                       </div>
-                    ))}
+                    ))} 
                   </div>
                   
                   <div className="total-expense">
