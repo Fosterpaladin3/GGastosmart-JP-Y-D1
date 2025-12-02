@@ -80,13 +80,20 @@ const Goals = () => {
   // Función para formatear nombres de mes
   const formatMonthName = (monthStr) => {
     const months = {
-      '01': 'Ene', '02': 'Feb', '03': 'Mar', '04': 'Abr',
-      '05': 'May', '06': 'Jun', '07': 'Jul', '08': 'Ago',
-      '09': 'Sep', '10': 'Oct', '11': 'Nov', '12': 'Dic',
-      '1': 'Ene', '2': 'Feb', '3': 'Mar', '4': 'Abr',
-      '5': 'May', '6': 'Jun', '7': 'Jul', '8': 'Ago',
-      '9': 'Sep', '10': 'Oct', '11': 'Nov', '12': 'Dic'
-    }
+      '1': 'Ene',
+      '2': 'Feb',
+      '3': 'Mar',
+      '4': 'Abr',
+      '5': 'May',
+      '6': 'Jun',
+      '7': 'Jul',
+      '8': 'Ago',
+      '9': 'Sep',
+      '10': 'Oct',
+      '11': 'Nov',
+      '12': 'Dic'
+    };
+
     return months[monthStr] || monthStr
   }
 
